@@ -26,7 +26,7 @@ export default [
     },
     children: [
       R({ title: '系统设置', path: '/app/config', component: '/app/config' }),
-      R({ title: 'Banner', path: '/app/banner', component: '/app/banner' })
+      R({ title: 'Banner设置', path: '/app/banner', component: '/app/banner' })
     ]
   },
   {

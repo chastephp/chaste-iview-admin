@@ -7,7 +7,7 @@
         <!-- 需要放在菜单上面的内容，如Logo，写在side-menu标签内部，如下 -->
         <router-link to="/home">
           <div class="logo-con">
-            <p v-show="!collapsed">ChasteCMS</p>
+            <p v-show="!collapsed">Chaste</p>
             <p v-show="collapsed">C</p>
           </div>
         </router-link>
