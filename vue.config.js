@@ -10,6 +10,7 @@ process.env.VUE_APP_VERSION = execSync('git log -1 HEAD --pretty=format:"%h"').t
 
 module.exports = {
   assetsDir: 'static',
+  publicPath: '', // 使用相对路径
   chainWebpack: config => {
     config.resolve.alias.set('@', resolve('src'))
 
