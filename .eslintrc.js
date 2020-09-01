@@ -18,6 +18,7 @@ module.exports = {
     }],
     'no-undef': 'off',
     'camelcase': 'off',
-    'eqeqeq': 'off'
+    'eqeqeq': 'off',
+    'no-prototype-builtins': 'off'
   }
 }
