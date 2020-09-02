@@ -26,5 +26,11 @@ export default {
     delete: r('/admin/delete', 'POST'),
     current: r('/admin/current', 'POST'),
     changePassword: r('/admin/password/change', 'POST')
+  },
+  book: {
+    list: r('/book/list', 'POST'),
+    create: r('/book/create', 'POST'),
+    delete: r('/book/delete', 'POST'),
+    update: r('/book/update', 'POST')
   }
 }

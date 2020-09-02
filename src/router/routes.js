@@ -74,7 +74,7 @@ const system = [
     component: () => import('@/views/errors/500.vue')
   },
   {
-    path: '404',
+    path: '/404',
     name: 'error_404',
     meta: {
       hideInMenu: true

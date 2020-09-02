@@ -25,8 +25,16 @@ export default [
       notCache: true
     },
     children: [
-      R({ title: '系统设置', path: '/app/config', component: '/app/config' }),
-      R({ title: 'Banner设置', path: '/app/banner', component: '/app/banner' })
+      R({
+        title: '系统设置',
+        path: '/app/config',
+        component: '/app/config'
+      }),
+      R({
+        title: 'Banner设置',
+        path: '/app/banner',
+        component: '/app/banner'
+      })
     ]
   },
   {
@@ -39,11 +47,60 @@ export default [
       notCache: true
     },
     children: [
-      R({ title: '管理员列表', path: '/auth/admin/list', component: '/auth/admin/list' }),
-      R({ title: '管理员编辑', path: '/auth/admin/edit/:id?', component: '/auth/admin/edit', hide: true }),
-      R({ title: '角色列表', path: '/auth/role/list', component: '/auth/role/list' }),
-      R({ title: '角色编辑', path: '/auth/role/edit/:id?', component: '/auth/role/edit', hide: true }),
-      R({ title: '权限列表', path: '/auth/permission/list', component: '/auth/permission/list' })
+      R({
+        title: '管理员列表',
+        path: '/auth/admin/list',
+        component: '/auth/admin/list'
+      }),
+      R({
+        title: '管理员编辑',
+        path: '/auth/admin/edit/:id?',
+        component: '/auth/admin/edit',
+        hide: true
+      }),
+      R({
+        title: '角色列表',
+        path: '/auth/role/list',
+        component: '/auth/role/list'
+      }),
+      R({
+        title: '角色编辑',
+        path: '/auth/role/edit/:id?',
+        component: '/auth/role/edit',
+        hide: true
+      }),
+      R({
+        title: '权限列表',
+        path: '/auth/permission/list',
+        component: '/auth/permission/list'
+      })
+    ]
+  },
+  {
+    path: '',
+    name: '组件',
+    component: Main,
+    meta: {
+      icon: 'ios-keypad',
+      title: '组件',
+      notCache: true
+    },
+    children: [
+      R({
+        title: '表单',
+        path: '/components/edit',
+        component: '/components/edit'
+      }),
+      R({
+        title: '列表',
+        path: '/components/list',
+        component: '/components/list'
+      }),
+      R({
+        title: '图表',
+        path: '/components/chart',
+        component: '/components/chart'
+      })
     ]
   }
 ]
