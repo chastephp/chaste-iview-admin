@@ -1,7 +1,7 @@
 export const Line = {
   makeBasicOption: ({ data, xKey, yKey, title }) => {
-    var xAxis = []
-    var series = []
+    const xAxis = []
+    const series = []
     for (const i in data) {
       xAxis.push(data[i][xKey])
       series.push(data[i][yKey])

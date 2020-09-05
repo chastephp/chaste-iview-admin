@@ -6,7 +6,7 @@ export default {
 
   cookieExpires: 7,
 
-  tokenKey: appName + '-token',
+  tokenKey: appName + ':token',
 
   version: process.env.VUE_APP_VERSION || '0.0.1',
 
