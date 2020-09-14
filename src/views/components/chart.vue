@@ -101,6 +101,42 @@ export default {
         yKey: 'news_users',
         title: { text: '每日新增用户数' }
       })
+
+      // 变化
+      setInterval(() => {
+        this.option = Line.makeBasicOption({
+          data: [
+            {
+              date: '2020-01',
+              news_users: Math.floor(Math.random() * 1000)
+            }, {
+              date: '2020-02',
+              news_users: Math.floor(Math.random() * 1000)
+            }, {
+              date: '2020-03',
+              news_users: Math.floor(Math.random() * 1000)
+            }, {
+              date: '2020-04',
+              news_users: Math.floor(Math.random() * 1000)
+            }, {
+              date: '2020-05',
+              news_users: Math.floor(Math.random() * 1000)
+            }, {
+              date: '2020-06',
+              news_users: Math.floor(Math.random() * 1000)
+            }, {
+              date: '2020-07',
+              news_users: Math.floor(Math.random() * 1000)
+            }, {
+              date: '2020-08',
+              news_users: Math.floor(Math.random() * 1000)
+            }
+          ],
+          xKey: 'date',
+          yKey: 'news_users',
+          title: { text: '每日新增用户数' }
+        })
+      }, 2000)
     }
 
   },
