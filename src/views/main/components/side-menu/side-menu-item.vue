@@ -7,7 +7,7 @@
     <template v-for="item in children">
       <side-menu-item :key="`menu-${item.name}`" :parent="item"
                       v-if="item.children && item.children.length > 0"></side-menu-item>
-      <menu-item :key="`menu-${item.name}`" :name="item.name" :to="item.meta.href || {name:item.name}" v-else>
+      <menu-item :key="`menu-${item.name}`" :name="item.name" v-else>
         <Icon :type="item.icon || ''"/>
         <span>{{ item.meta.title }}</span></menu-item>
     </template>
