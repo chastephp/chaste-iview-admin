@@ -2,7 +2,8 @@
   <Layout class="main" style="height: 100%">
     <Sider :collapsed-width="50" :style="{overflow: 'hidden'}" :width="200" class="left-sider" collapsible hide-trigger
            v-model="collapsed">
-      <side-menu :active-name="$route.name" :collapsed="collapsed" :menu-list="menuList" @on-select="turnToPage" accordion
+      <side-menu :active-name="$route.name" :collapsed="collapsed" :menu-list="menuList" @on-select="turnToPage"
+                 accordion
                  ref="sideMenu">
         <!-- 需要放在菜单上面的内容，如Logo，写在side-menu标签内部，如下 -->
         <router-link to="/home">
@@ -74,19 +75,16 @@ export default {
       this.turnToPage(item)
     },
 
-    turnToPage (route) {
-      let { name, params, query } = {}
-      if (typeof route === 'string') name = route
-      else {
-        name = route.name
-        params = route.params
-        query = route.query
+    turnToPage (name) {
+      if (name.includes('//')) {
+        window.location.href = name
+      } else {
+        if (this.route.name !== name) {
+          this.$router.push({
+            name
+          })
+        }
       }
-      this.$router.push({
-        name,
-        params,
-        query
-      })
     },
 
     checkUpdate () {
