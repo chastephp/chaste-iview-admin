@@ -79,7 +79,7 @@ export default {
       if (name.includes('//')) {
         window.location.href = name
       } else {
-        if (this.route.name !== name) {
+        if (this.$route.name !== name) {
           this.$router.push({
             name
           })
