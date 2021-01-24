@@ -115,22 +115,28 @@ export default {
   methods: {
 
     supportHandle (item) {
-      const options = item.options || []
-      const insideBtns = []
-      options.forEach(item => {
-        if (handleBtn[item]) insideBtns.push(handleBtn[item])
+      if (!Array.isArray(item.buttons)) {
+        console.error('buttons is not array.')
+        item.buttons = []
+      }
+      const insideButtons = []
+      item.buttons.forEach(btn => {
+        if (typeof btn === 'string') {
+          insideButtons.push(handleBtn[btn])
+        } else {
+          insideButtons.push(btn)
+        }
       })
-      const btns = item.button ? [].concat(insideBtns, item.button) : insideBtns
+
       item.render = (h, params) => {
         params.tableData = this.value
-        return h('div', btns.map(item => item(h, params, this)))
+        return h('div', insideButtons.map(btn => btn(h, params, this)))
       }
       return item
     },
     handleColumns (columns) {
       this.insideColumns = columns.map((item, index) => {
         let res = item
-        if (res.editable) res = this.suportEdit(res, index)
         if (res.key === 'handle') res = this.supportHandle(res)
         return res
       })

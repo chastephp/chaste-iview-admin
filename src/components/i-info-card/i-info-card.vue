@@ -35,7 +35,7 @@ export default {
     },
     shadow: {
       type: Boolean,
-      default: false
+      default: true
     }
   },
   computed: {

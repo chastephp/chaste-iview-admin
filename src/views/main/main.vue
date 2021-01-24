@@ -8,8 +8,8 @@
         <!-- 需要放在菜单上面的内容，如Logo，写在side-menu标签内部，如下 -->
         <router-link to="/home">
           <div class="logo-con">
-            <p v-show="!collapsed">Chaste</p>
-            <p v-show="collapsed">C</p>
+            <p v-show="!collapsed">{{ config.appName }}系统</p>
+            <p v-show="collapsed">{{ config.appName.substr(0, 1) }}</p>
           </div>
         </router-link>
       </side-menu>
@@ -18,7 +18,7 @@
       <Header class="header-con">
         <HeaderBar :collapsed="collapsed" @on-coll-change="handleCollapsedChange">
           <User :username="username"/>
-          <FullScreen style="margin-right: 10px;" v-model="isFullScreen"/>
+          <FullScreen style="margin-right: 16px;" v-model="isFullScreen"/>
         </HeaderBar>
       </Header>
       <Content class="main-content-con">
@@ -34,10 +34,11 @@
 <script>
 import User from './components/user'
 import FullScreen from './components/fullscreen'
+import config from '@/config'
 
 import SideMenu from './components/side-menu'
 import HeaderBar from './components/header-bar'
-import { mapActions } from 'vuex'
+import { mapActions, mapMutations } from 'vuex'
 import './main.less'
 
 export default {
@@ -50,13 +51,19 @@ export default {
   },
   data () {
     return {
+      config: config,
       collapsed: false,
       isFullScreen: false
     }
   },
+  watch: {
+    $route: function (newRoute) {
+      this.setBreadCrumbs(newRoute)
+    }
+  },
   computed: {
     username () {
-      return this.$store.state.user.user.account
+      return this.$store.state.user.user?.username
     },
     menuList () {
       return this.$store.getters.menuList
@@ -64,9 +71,11 @@ export default {
   },
   methods: {
     ...mapActions([
-      'handleLogin'
+      'handleLogin', 'getUserInfo'
     ]),
-
+    ...mapMutations([
+      'setBreadCrumbs'
+    ]),
     handleCollapsedChange (state) {
       this.collapsed = state
     },
@@ -101,7 +110,20 @@ export default {
               this.$Notice.warning({
                 title: '更新提醒',
                 duration: 0,
-                desc: '前端版本有更新啦，请清空缓存刷新浏览器更新！'
+                desc: '前端版本有更新啦，请清空缓存刷新浏览器更新！',
+                render: h => {
+                  return h('div', [
+                    '前端版本有更新啦，请刷新浏览器更新！',
+                    h('br'), h('br'),
+                    h('Button', {
+                      on: {
+                        click: () => {
+                          window.location.reload(true)
+                        }
+                      }
+                    }, '刷新')
+                  ])
+                }
               })
             } else {
               console.log('已经是最新版本了！')
@@ -110,6 +132,11 @@ export default {
         }).catch(() => {
         })
       }, 1000 * 60)
+    },
+    updateUser () {
+      setInterval(() => {
+        this.getUserInfo().then(() => {})
+      }, 1000 * 30)
     }
   },
   mounted () {
@@ -121,6 +148,7 @@ export default {
 
     // 检查更新
     this.checkUpdate()
+    this.updateUser()
   }
 }
 </script>

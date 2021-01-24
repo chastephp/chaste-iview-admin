@@ -58,9 +58,12 @@ export const Table = {
   kv (array) {
     return (h, params) => {
       const value = params.row[params.column.key]
-      const index = array.findIndex(v => v.key.toString() === value.toString())
-      const valueText = array[index] ? array[index].val : ''
-      return h('span', valueText)
+      if (Array.isArray(array)) {
+        const index = array.findIndex(v => v.key.toString() === value.toString())
+        const valueText = array[index] ? array[index].val : ''
+        return h('span', valueText)
+      }
+      return h('span', array[value] || '')
     }
   },
   date (fmt = 'YYYY-MM-DD HH:mm:ss') {
@@ -80,11 +83,11 @@ export const Table = {
       return h('span', ret.join(separator))
     }
   },
-  get (key) {
+  get (key, defaultValue = '') {
     return (h, params) => {
       var ret = params.row
       key.split('.').forEach(k => {
-        ret = ret ? ret[k] : ''
+        ret = ret ? ret[k] : defaultValue
       })
 
       return h('span', ret)
@@ -100,7 +103,7 @@ export const Table = {
 
 export const Item = {
   select (label, options) {
-    return Object.assign({ type: 'select', label }, options)
+    return Object.assign({ type: 'select', label, options: [] }, options)
   },
   input (label, options) {
     return Object.assign({ type: 'input', label }, options)
@@ -112,7 +115,7 @@ export const Item = {
     return Object.assign({ type: 'password', label }, options)
   },
   checkbox (label, options) {
-    return Object.assign({ type: 'checkbox', label }, options)
+    return Object.assign({ type: 'checkbox', label, options: [] }, options)
   },
   radio (label, options) {
     return Object.assign({ type: 'radio', label }, options)

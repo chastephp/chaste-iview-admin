@@ -1,11 +1,11 @@
 import Vue from 'vue'
-import Router from 'vue-router'
+import VueRouter from 'vue-router'
 import routes from './routes'
 import auth from '@/libraries/auth'
 
-Vue.use(Router)
+Vue.use(VueRouter)
 
-const router = new Router({
+const router = new VueRouter({
   routes,
   mode: 'hash'
 })

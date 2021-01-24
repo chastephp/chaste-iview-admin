@@ -30,19 +30,19 @@
         </Form>
       </div>
 
-      <IChartLine style="height: 500px;" v-model="option"></IChartLine>
+      <IChart style="height: 500px;" v-model="option"></IChart>
 
     </Card>
   </div>
 </template>
 
 <script>
-import { IChartLine } from '@/components/i-charts'
+import IChart from '@/components/i-chart'
 import { Line } from '@/libraries/echarts'
 
 export default {
   components: {
-    IChartLine
+    IChart
   },
   data () {
     return {

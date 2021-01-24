@@ -66,5 +66,18 @@ export default {
     if (val === null) return null
     if (val === 'undefined') return undefined
     return JSON.parse(val)
+  },
+  collection (name) {
+    return {
+      set (key, value) {
+        window.sessionStorage.setItem(config.appName + ':' + name + ':' + key, JSON.stringify(value))
+      },
+      get (key) {
+        const val = window.sessionStorage.getItem(config.appName + ':' + name + ':' + key)
+        if (val === null) return null
+        if (val === 'undefined') return undefined
+        return JSON.parse(val)
+      }
+    }
   }
 }

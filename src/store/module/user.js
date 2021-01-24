@@ -12,15 +12,10 @@ export default {
   },
   actions: {
     // 登录
-    handleLogin ({ commit }, { account, password }) {
-      account = account.trim()
+    handleLogin ({ commit }, data) {
       return new Promise((resolve, reject) => {
-        api.login({
-          account,
-          password
-        }).then(res => {
+        api.login(data).then(res => {
           if (res.code === 0) {
-            commit('setUser', res.data)
             auth.setToken(res.data.access_token)
           }
           resolve(res)
@@ -29,13 +24,14 @@ export default {
         })
       })
     },
-
     // 获取用户相关信息
     getUserInfo ({ state, commit }) {
       return new Promise((resolve, reject) => {
-        api.admin.info().then(res => {
-          commit('setUser', res.data)
-          resolve(data)
+        api.user().then(res => {
+          if (res.code === 0) {
+            commit('setUser', res.data)
+          }
+          resolve(res)
         }).catch(err => {
           reject(err)
         })

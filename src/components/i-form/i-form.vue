@@ -10,7 +10,12 @@
       <Select :disabled="item.disabled" :multiple="item.multiple" :style="item.style"
               v-if="item.type == 'select'"
               v-model="form.model[prop]">
-        <Option :key="item.key" :value="item.key" v-for="item in item.options">{{ item.val }}</Option>
+        <template v-if="Array.isArray(item.options)">
+          <Option :key="item.key" :value="item.key" v-for="item in item.options">{{ item.val }}</Option>
+        </template>
+        <template v-else>
+          <Option :key="_key" :value="_key" v-for="(_item,_key) in item.options">{{ _item }}</Option>
+        </template>
       </Select>
 
       <RadioGroup :disabled="item.disabled" v-else-if="item.type == 'radio'" v-model="form.model[prop]">
