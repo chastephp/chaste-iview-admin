@@ -79,7 +79,7 @@ export default {
     ]),
     refreshCaptcha () {
       api.captcha().then(res => {
-        this.image = res.data.base64
+        this.image = res.data.url
         this.form.model.key = res.data.key
       })
     },

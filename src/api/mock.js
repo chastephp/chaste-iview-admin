@@ -22,7 +22,7 @@ Mock.mock('/auth/user', {
   }
 })
 
-Mock.mock('/captcha', {
+Mock.mock('/auth/captcha', {
   code: 0,
   message: 'successs',
   data: {

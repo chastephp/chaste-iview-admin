@@ -5,7 +5,7 @@ const r = chaste.request
 export default {
   login: r('/auth/login', 'POST'),
   user: r('/auth/user', 'POST'),
-  captcha: r('/auth/captcha', 'POST'),
+  captcha: r('/auth/captcha', 'GET'),
   app: {
     config: {
       list: r('/app/config/list'),
