@@ -4,6 +4,8 @@ const r = chaste.request
 
 export default {
   login: r('/auth/login', 'POST'),
+  user: r('/auth/user', 'POST'),
+  captcha: r('/auth/captcha', 'POST'),
   app: {
     config: {
       list: r('/app/config/list'),

@@ -22,6 +22,15 @@ Mock.mock('/auth/user', {
   }
 })
 
+Mock.mock('/captcha', {
+  code: 0,
+  message: 'successs',
+  data: {
+    key: +new Date(),
+    url: 'https://file.iviewui.com/iview-pro/captcha1.png'
+  }
+})
+
 Mock.mock('/upload', {
   code: 0,
   message: 'successs',
