@@ -9,6 +9,19 @@ Mock.mock('/auth/login', {
   }
 })
 
+Mock.mock('/auth/user', {
+  code: 0,
+  message: '获取用户信息成功',
+  data: {
+    id: 1,
+    username: '15888888888',
+    is_super: 1,
+    last_login_at: '2021-01-25 11:45:22',
+    last_login_ip: '114.222.18.78',
+    permissions: []
+  }
+})
+
 Mock.mock('/upload', {
   code: 0,
   message: 'successs',
